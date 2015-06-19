@@ -7,6 +7,7 @@ from web import form
 render = web.template.render('templates/', base='layout')
 
 urls = (
+    '/Check', 'Check',
     '/Create', 'Create',
     '/', 'Index',
     '/(.*)', 'List'
@@ -64,6 +65,8 @@ class Create:
 
         collection.insert(document)
 
+        return web.seeother("/%s" % id)
+
     def parseCollaborators(self, collaborators):
         ret = []
 
@@ -83,6 +86,17 @@ class Create:
             ret.append({'id' : id, 'name' : name, 'checked' : []})
             id = id + 1
         return ret
+
+class Check:
+    checkForm = form.Form(
+        form.Hidden('id'),
+        form.Hidden('item'),
+        form.Hidden('user')
+    )
+
+    def POST(self):
+        pass
+
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
