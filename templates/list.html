@@ -1,0 +1,12 @@
+$def with (document)
+
+
+    <h1 id="title">$document['name']</h1>
+    <ul>
+        $for collaborator in document['collaborators']:
+            <li>$collaborator['name']</li>
+    </ul>
+    <ul>
+        $for item in document['items']:
+            <li>$item['name']</li>
+    </ul>
