@@ -1,12 +1,32 @@
 $def with (document)
 
+<link rel="stylesheet" href="static/css/list.css" type="text/css" />
 
     <h1 id="title">$document['name']</h1>
-    <ul>
-        $for collaborator in document['collaborators']:
-            <li>$collaborator['name']</li>
-    </ul>
-    <ul>
+    <div id="sidebar">
+        <ul id="collaborators">
+            $for collaborator in document['collaborators']:
+                <li>
+                    <div class="color-box" style="background-color:
+                        $collaborator['color']
+                    ;"></div> - $collaborator['name']
+                </li>
+        </ul>
+    </div>
+    <table id="list">
+        <tr>
+            <th></th>
+            <th>Item</th>
+        </tr>
         $for item in document['items']:
-            <li>$item['name']</li>
-    </ul>
+            <tr>
+                <td class="checklist">
+                    $for i in item['checked']:
+                        $for collaborator in document['collaborators']:
+                            $if i['id'] == collaborator['id']:
+                                <div class="color-box" style="background-color: $collaborator['color'];"></div>
+                </td>
+                <td class="item">$item['name']</td>
+            </tr>
+
+    </table>

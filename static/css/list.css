@@ -1,0 +1,61 @@
+div#sidebar {
+    border: 1px solid;
+    border-radius: 20px;
+
+    width: 200px;
+    float:right;
+
+    margin-left: 10px;
+}
+
+.color-box {
+    width: 15px;
+    height: 15px;
+
+    display: inline-block;
+    background-color: #CCC;
+}
+
+table#list {
+    width: 794px;
+
+    border-collapse: collapse;
+}
+
+table#list td, table#list th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+table#list tr:first-child th {
+    border-top: 0;
+}
+table#list tr:last-child td {
+    border-bottom: 0;
+}
+
+table#list tr td:first-child,
+table#list tr th:first-child {
+    border-left: 0;
+}
+
+table#list tr:last-child td {
+    border-bottom: 0;
+}
+
+table#list tr td:last-child,
+table#list tr th:last-child {
+    border-right: 0;
+}
+
+.checklist {
+    width: 150px;
+    max-width: 150px;
+}
+
+.item {
+    width: 100%;
+}
+ul#collaborators {
+    list-style-type: none;
+}

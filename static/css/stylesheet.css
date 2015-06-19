@@ -6,6 +6,20 @@ body {
 div#main {
     width: 1024px;
     margin: auto;
-    background:#000000;
-    color:#FFFFFF
+    background:#FFFFFF;
+    color:#000000;
+
+    border-radius: 20px;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-size: 24px;
+    font-family: 'Lobster', cursive;
+}
+
+h1#title {
+    font-size: 64px;
 }
