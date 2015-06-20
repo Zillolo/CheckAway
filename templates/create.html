@@ -5,12 +5,12 @@ $def with (form)
 <h1> Create a new Checklist</h1>
 <form method="POST">
 <p>Step 1 - Give your list a name!</p>
-$:form.name.render()
-<p>Step 2 - Specify who collaborates with you! (Names separated by ',')</p>
-$:form.collaborators.render()
+Title: $:form.name.render()
+<p>Step 2 - Specify who collaborates with you! (Emails separated by ',')</p>
+Users: $:form.users.render()
 <p>Step 3 - Specify the items you need to work on! (Items separated by ',')</p>
-$:form.itemlist.render()
+Items: $:form.itemlist.render()
 <br>
-$:form.submit.render()
 $:form.id.render()
+$:form.submit.render()
 </form>

@@ -5,11 +5,11 @@ $def with (document)
     <h1 id="title">$document['name']</h1>
     <div id="sidebar">
         <ul id="collaborators">
-            $for collaborator in document['collaborators']:
+            $for user in document['users']:
                 <li>
                     <div class="color-box" style="background-color:
-                        $collaborator['color']
-                    ;"></div> - $collaborator['name']
+                        $user['color']
+                    ;"></div> - $user['email']
                 </li>
         </ul>
     </div>
@@ -22,11 +22,11 @@ $def with (document)
             <tr>
                 <td class="checklist">
                     $for i in item['checked']:
-                        $for collaborator in document['collaborators']:
-                            $if i['id'] == collaborator['id']:
-                                <div class="color-box" style="background-color: $collaborator['color'];"></div>
+                        $for user in document['users']:
+                            $if i['id'] == user['id']:
+                                <div class="color-box" style="background-color: $user['color'];"></div>
                 </td>
-                <td class="item">$item['name']</td>
+                <td class="item"><a href="Check?id=$document['id']&item=$int(float(item['id']))&user=1">$item['name']</a></td>
             </tr>
 
     </table>
