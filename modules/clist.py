@@ -26,23 +26,6 @@ class Create:
     )
 
     def GET(self):
-#        parameters = web.input(userCount=1)
-
-        # Reset form cause weird things happen if you dont.
-#        self.createForm = DynamicForm(
-#            web.form.Textbox('name', description='Name'),
-#            web.form.Textarea('items', descritption='Items'),
-#            web.form.Hidden('id', value=uuid.uuid4()),
-#            web.form.Button('submit', type='submit', description='Submit')
-#        )
-
-#        try:
-#            for i in range(0, int(parameters.userCount)):
-#               self.createForm.add(web.form.Textbox('username%i' % i))
-#                self.createForm.add(web.form.Textbox('email%i' % i))
-#        except ValueError:
-#            return render.error("Not a valid usercount.")
-
         return render.create(self.createForm)
 
     def POST(self):
@@ -93,6 +76,36 @@ class Create:
 class Check:
 
     def GET(self):
+        parameters = web.input(id=None,item=None,user=None)
+        if parameters.id is None or parameters.item is None or parameters.user is None:
+            return render.error("Da fuck.")
+
+        client = pymongo.MongoClient('localhost', 27017)
+        db = client.check
+        collection = db.lists
+
+        document = collection.find_one({'id' : parameters.id})
+        if document is None:
+            return render.error("No document with this id.")
+
+        del document['_id']
+        for item in document['items']:
+            if item['id'] == int(parameters.item):
+                exists = False
+                for user in item['checked']:
+                    if user['id'] == int(parameters.user):
+                        exists = True
+                        break
+                if exists:
+                    item['checked'].remove({'id' : int(parameters.user)})
+                else:
+                    item['checked'].append({'id' : int(parameters.user)})
+                break
+
+        collection.update({'id' : parameters.id}, {'$set' : document})
+
+        return web.seeother('/View?id=%s' % parameters.id)
+
 
 class View:
 

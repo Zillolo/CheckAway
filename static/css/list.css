@@ -2,10 +2,12 @@ div#sidebar {
     border: 1px solid;
     border-radius: 20px;
 
-    width: 200px;
+    width: 400px;
     float:right;
 
     margin-left: 10px;
+
+    font-size: 20px;
 }
 
 .color-box {
@@ -17,7 +19,7 @@ div#sidebar {
 }
 
 table#list {
-    width: 794px;
+    width: 594px;
 
     border-collapse: collapse;
 }
